@@ -14,7 +14,18 @@ const specialFood = [
     { name: 'Pasta', price: 6.2, imageUrl: 'https://static.vecteezy.com/system/resources/previews/045/654/340/non_2x/spaghetti-on-transparent-background-free-png.png' }
 ]
 
+const recommendedFood = [
+    { imageUrl: 'https://www.tasteofhome.com/wp-content/uploads/2025/07/30-Summer-Desserts-That-Are-No-Bake-and-Oh-So-Easy_TOHcom23_27515_P2_MD_03_22_6b.jpg' },
+    { imageUrl: 'https://chopnotch.com/wp-content/uploads/2020/11/Panna-Cotta-1.jpg' },
+    { imageUrl: 'https://thedeliciousspoon.com/wp-content/uploads/2019/04/Burger-pic-pin-1.jpg' },
+    { imageUrl: 'https://www.tasteofhome.com/wp-content/uploads/2025/01/That-Good-Salad_EXPS_FT24_6498_JR_1212_1.jpg' },
+    { imageUrl: 'https://images.unsplash.com/photo-1678684279246-96e6afb970f2?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29va2VkJTIwbWVhdHxlbnwwfHwwfHx8MA%3D%3D' },
+    { imageUrl: 'https://nutritionsource.hsph.harvard.edu/wp-content/uploads/2024/11/AdobeStock_71037928.jpeg' }
+
+]
+
 import SpecialFoodCard from "../components/SpecialFoodCard";
+import RecommendFoodCard from "../components/RecommendFoodCard";
 
 export default function HomeScreen() {
     return (
@@ -32,6 +43,12 @@ export default function HomeScreen() {
                     <Text style={[styles.primaryText, { fontSize: 20, marginBottom: 30 }]}>Specials</Text>
                     <View style={styles.specialFoods}>
                         {specialFood.map(food => <SpecialFoodCard key={food.name} food={food} />)}
+                    </View>
+                </View>
+                <View style={styles.recommendedContainer}>
+                    <Text style={[styles.primaryText, { fontSize: 20 }]}>Recommended</Text>
+                    <View style={styles.recommendedFood}>
+                        {recommendedFood.map(food => <RecommendFoodCard key={food.imageUrl} food={food} />)}
                     </View>
                 </View>
             </View>
@@ -68,6 +85,16 @@ const styles = StyleSheet.create({
     },
     specialFoods: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginBottom: 20
+    },
+    recommendedContainer: {
+        gap: 10
+    },
+    recommendedFood: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        gap: 20
     }
 })

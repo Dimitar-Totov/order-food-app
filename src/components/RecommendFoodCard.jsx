@@ -1,0 +1,21 @@
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
+
+export default function RecommendFoodCard({food}){
+    return (
+        <TouchableOpacity style={styles.foodContainer}>
+            <Image style={styles.image} source={{uri: food.imageUrl}} />
+        </TouchableOpacity>
+    )
+}
+
+const styles = StyleSheet.create({
+    foodContainer: {
+        height: 100,
+        width: 100
+    },
+    image: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 20,
+    }
+})
