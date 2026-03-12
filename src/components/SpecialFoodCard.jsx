@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react-native";
 
+import { useNavigation } from "@react-navigation/native";
 import {
     Image,
     StyleSheet,
@@ -9,6 +10,9 @@ import {
 } from "react-native";
 
 export default function SpecialFoodCard({ food }) {
+    const navigation = useNavigation();
+
+    const navigatePressHandler = () => navigation.navigate('Details')
     return (
         <View style={styles.cardContainer}>
             <Image style={styles.cardImage} source={{ uri: food.imageUrl }} />
@@ -16,7 +20,7 @@ export default function SpecialFoodCard({ food }) {
             <Text style={styles.price}>${food.price}</Text>
             <View style={styles.detailsContainer}>
                 <Text>See Details</Text>
-                <TouchableOpacity hitSlop={20}>
+                <TouchableOpacity onPress={navigatePressHandler} hitSlop={20}>
                     <ChevronRight style={styles.detailsButton} />
                 </TouchableOpacity>
             </View>

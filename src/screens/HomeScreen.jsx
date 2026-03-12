@@ -1,4 +1,4 @@
-import { Search } from "lucide-react-native";
+import { Search, Menu } from "lucide-react-native";
 
 import {
     StyleSheet,
@@ -6,8 +6,10 @@ import {
     TextInput,
     TouchableWithoutFeedback,
     View,
-    Keyboard
+    Keyboard,
+    TouchableOpacity
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const specialFood = [
     { name: 'Noodles', price: 7.2, imageUrl: 'https://www.pngall.com/wp-content/uploads/5/Chinese-Noodles-PNG-High-Quality-Image.png' },
@@ -26,42 +28,50 @@ const recommendedFood = [
 
 import SpecialFoodCard from "../components/SpecialFoodCard";
 import RecommendFoodCard from "../components/RecommendFoodCard";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
+    const navigation = useNavigation();
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <Text style={styles.primaryText}>Hello Dimitar</Text>
-                    <Text style={styles.secondaryText}>What do you want to order today ?</Text>
-                </View>
-                <View style={styles.searchContainer}>
-                    <Search color={'#868585'} />
-                    <TextInput placeholder="Search" style={{ width: '90%' }} />
-                </View>
-                <View style={styles.specialsContainer}>
-                    <Text style={[styles.primaryText, { fontSize: 20, marginBottom: 30 }]}>Specials</Text>
-                    <View style={styles.specialFoods}>
-                        {specialFood.map(food => <SpecialFoodCard key={food.name} food={food} />)}
+        <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={styles.container}>
+                    <TouchableOpacity style={styles.menu} onPress={() => navigation.openDrawer()}>
+                        <Menu size={30} />
+                    </TouchableOpacity>
+                    <View style={styles.header}>
+                        <Text style={styles.primaryText}>Hello Dimitar</Text>
+                        <Text style={styles.secondaryText}>What do you want to order today ?</Text>
+                    </View>
+                    <View style={styles.searchContainer}>
+                        <Search color={'#868585'} />
+                        <TextInput placeholder="Search" style={{ width: '90%' }} />
+                    </View>
+                    <View style={styles.specialsContainer}>
+                        <Text style={[styles.primaryText, { fontSize: 20, marginBottom: 30 }]}>Specials</Text>
+                        <View style={styles.specialFoods}>
+                            {specialFood.map(food => <SpecialFoodCard key={food.name} food={food} />)}
+                        </View>
+                    </View>
+                    <View style={styles.recommendedContainer}>
+                        <Text style={[styles.primaryText, { fontSize: 20 }]}>Recommended</Text>
+                        <View style={styles.recommendedFood}>
+                            {recommendedFood.map(food => <RecommendFoodCard key={food.imageUrl} food={food} />)}
+                        </View>
                     </View>
                 </View>
-                <View style={styles.recommendedContainer}>
-                    <Text style={[styles.primaryText, { fontSize: 20 }]}>Recommended</Text>
-                    <View style={styles.recommendedFood}>
-                        {recommendedFood.map(food => <RecommendFoodCard key={food.imageUrl} food={food} />)}
-                    </View>
-                </View>
-            </View>
-        </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
         paddingHorizontal: 30,
         paddingTop: 30
+    },
+    menu: {
+        marginBottom: 25
     },
     header: {
         marginBottom: 20
