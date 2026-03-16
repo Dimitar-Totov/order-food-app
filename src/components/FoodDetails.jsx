@@ -55,17 +55,17 @@ const styles = StyleSheet.create({
     },
     header: {
         position: 'absolute',
-        right: 100,
-        top: -100,
+        right: 80,
+        top: -130,
     },
     foodImage: {
         resizeMode: 'cover',
-        height: 200,
-        width: 200,
-        borderRadius: 100
+        height: 250,
+        width: 250,
+        borderRadius: 150
     },
     main: {
-        paddingTop: 150,
+        paddingTop: 200,
         paddingHorizontal: 15
     },
     foodDescription: {
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingTop: 30,
         paddingHorizontal: 15,
-        paddingBottom: 60
+        paddingBottom: 100
     },
     addToCartSection:{
         flexDirection: 'row',
