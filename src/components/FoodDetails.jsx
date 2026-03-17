@@ -32,7 +32,7 @@ export default function FoodDetails() {
                         </View>
                         <TouchableOpacity style={styles.addToCartSection}>
                             <Text style={styles.addToCartButton}>Add to cart</Text>
-                            <Plus color={'#419F7D'} style={styles.addIcon} />
+                            <Plus color={'#419F7D'} strokeWidth={3} style={styles.addIcon} />
                         </TouchableOpacity>
                     </View>
                 </View>

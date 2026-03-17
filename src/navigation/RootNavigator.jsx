@@ -1,16 +1,16 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import OrdersScreen from '../screens/OrdersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import HomeNavigator from './HomeNavigator';
+import OrderNavigator from './OrderNavigator';
 
 export default function RootNavigator() {
     const Drawer = createDrawerNavigator();
     return (
-        <Drawer.Navigator screenOptions={{headerShown: false}}>
-            <Drawer.Screen name='Home' component={HomeNavigator} options={{headerTitle: ''}}/>
-            <Drawer.Screen name='Orders' component={OrdersScreen}/>
-            <Drawer.Screen name='Profile' component={ProfileScreen}/>
+        <Drawer.Navigator screenOptions={{ headerShown: false, headerTitle: '' }}>
+            <Drawer.Screen name='Home' component={HomeNavigator} />
+            <Drawer.Screen name='Orders' component={OrderNavigator} />
+            <Drawer.Screen name='Profile' component={ProfileScreen} />
         </Drawer.Navigator>
     )
 }
