@@ -12,7 +12,9 @@ export default function RootNavigator() {
     const Drawer = createDrawerNavigator();
     const navigation = useNavigation();
     return (
-        <Drawer.Navigator screenOptions={{ headerShown: false, headerTitle: '' }}>
+        <Drawer.Navigator
+            screenOptions={{ headerShown: false, headerTitle: '' }}
+        >
             <Drawer.Screen name='Home' component={HomeNavigator} />
             <Drawer.Screen name='Orders' component={OrderNavigator} />
             <Drawer.Screen
