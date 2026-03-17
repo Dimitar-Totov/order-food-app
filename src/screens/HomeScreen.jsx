@@ -7,13 +7,16 @@ import {
     TouchableWithoutFeedback,
     View,
     Keyboard,
-    TouchableOpacity
+    TouchableOpacity,
+    FlatList
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const specialFood = [
     { name: 'Noodles', price: 7.2, imageUrl: 'https://www.pngall.com/wp-content/uploads/5/Chinese-Noodles-PNG-High-Quality-Image.png' },
-    { name: 'Pasta', price: 6.2, imageUrl: 'https://static.vecteezy.com/system/resources/previews/045/654/340/non_2x/spaghetti-on-transparent-background-free-png.png' }
+    { name: 'Pasta', price: 6.2, imageUrl: 'https://static.vecteezy.com/system/resources/previews/045/654/340/non_2x/spaghetti-on-transparent-background-free-png.png' },
+    { name: 'Burger', price: 6.5, imageUrl: 'https://img.pikbest.com/png-images/20241005/burger-png-image_10927034.png!sw800' },
+    { name: 'Pork', price: 10.50, imageUrl: 'https://kitchenmallth.com/wp-content/uploads/2020/11/steak2.png' }
 ]
 
 const recommendedFood = [
@@ -33,7 +36,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function HomeScreen() {
     const navigation = useNavigation();
     return (
-        <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <TouchableOpacity style={styles.menu} onPress={() => navigation.openDrawer()}>
@@ -50,7 +53,13 @@ export default function HomeScreen() {
                     <View style={styles.specialsContainer}>
                         <Text style={[styles.primaryText, { fontSize: 20, marginBottom: 30 }]}>Specials</Text>
                         <View style={styles.specialFoods}>
-                            {specialFood.map(food => <SpecialFoodCard key={food.name} food={food} />)}
+                            <FlatList
+                                data={specialFood}
+                                keyExtractor={item => item.name}
+                                horizontal
+                                showsHorizontalScrollIndicator={false}
+                                renderItem={({ item }) => <SpecialFoodCard food={item} />}
+                            />
                         </View>
                     </View>
                     <View style={styles.recommendedContainer}>
@@ -95,7 +104,6 @@ const styles = StyleSheet.create({
     },
     specialFoods: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         marginBottom: 20
     },
     recommendedContainer: {

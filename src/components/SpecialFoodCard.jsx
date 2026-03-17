@@ -31,19 +31,20 @@ export default function SpecialFoodCard({ food }) {
 const styles = StyleSheet.create({
     cardContainer: {
         backgroundColor: '#F4E4CD',
-        paddingTop: 100,
+        paddingTop: 140,
         paddingRight: 20,
         paddingLeft: 20,
         paddingBottom: 20,
-        borderRadius: 30
+        borderRadius: 30,
+        marginRight: 20,
     },
     cardImage: {
-        height: 150,
-        width: 150,
+        height: 130,
+        width: 130,
         resizeMode: 'contain',
         position: 'absolute',
-        top: -45,
-        left: -25
+        top: 5,
+        left: 11
     },
     name: {
         fontSize: 17,
