@@ -9,11 +9,17 @@ import {
     TouchableWithoutFeedback,
     View
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+import { Menu } from "lucide-react-native";
+
 import SignUp from "../components/SignUp";
 import SignIn from "../components/SignIn";
 
 export default function ProfileScreen() {
+    const navigation = useNavigation();
+
     const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 
     const [selected, setSelected] = useState('signup');
@@ -52,9 +58,11 @@ export default function ProfileScreen() {
         <SafeAreaView style={styles.container}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={{ flex: 1 }}>
-
                     <View style={styles.headerSection}>
                         <Image style={styles.image} source={require('../../assets/chef.avif')} />
+                        <TouchableOpacity style={styles.menu} onPress={() => navigation.openDrawer()}>
+                            <Menu size={30} />
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.content}>
@@ -106,7 +114,12 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+    },
+    menu: {
+        position: 'absolute',
+        left: 25,
+        top: 20
     },
     image: {
         height: 250,
@@ -145,7 +158,6 @@ const styles = StyleSheet.create({
     userDataSection: {
         width: '100%'
     },
-
     buttonSection: {
         width: '100%',
         marginTop: 15

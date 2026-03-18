@@ -12,7 +12,7 @@ export default function CartButton() {
     return (
         <TouchableOpacity
             style={styles.container}
-            onPress={() => navigation.navigate("Orders")}
+            onPress={() => navigation.navigate("Orders",{screen: 'OrdersList'})}
         >
             <View style={{ position: "relative" }}>
                 <ShoppingCart size={30} color="#000" />

@@ -1,5 +1,6 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import OrderFoodCard from "../components/OrderFoodCard";
 
 const orders = [
@@ -17,16 +18,13 @@ const orders = [
 export default function OrdersScreen() {
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.headerText}>My Order</Text>
-            </View>
-            <FlatList 
+            <FlatList
                 data={orders}
                 keyExtractor={(item) => item.name}
-                renderItem={({item}) => (
+                renderItem={({ item }) => (
                     <OrderFoodCard food={item} />
                 )}
-                style={{width: '100%'}}
+                style={{ width: '100%' }}
             />
             <TouchableOpacity style={styles.checkoutButton}>
                 <Text style={styles.checkoutText}>Checkout</Text>
@@ -40,17 +38,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center'
-    },
-    header: {
-        paddingHorizontal: 30,
-        marginTop: 70,
-        marginBottom: 40,
-        width: '100%'
-    },
-    headerText: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: '#3f3e3e'
     },
     checkoutButton: {
         marginTop: 10,

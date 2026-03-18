@@ -39,9 +39,6 @@ export default function HomeScreen() {
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
-                    <TouchableOpacity style={styles.menu} onPress={() => navigation.openDrawer()}>
-                        <Menu size={30} />
-                    </TouchableOpacity>
                     <View style={styles.header}>
                         <Text style={styles.primaryText}>Hello Dimitar</Text>
                         <Text style={styles.secondaryText}>What do you want to order today ?</Text>
@@ -77,10 +74,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 30,
-        paddingTop: 30
-    },
-    menu: {
-        marginBottom: 25
     },
     header: {
         marginBottom: 20
