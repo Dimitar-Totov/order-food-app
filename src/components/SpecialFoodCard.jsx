@@ -15,7 +15,7 @@ export default function SpecialFoodCard({ food }) {
     const navigatePressHandler = () => navigation.navigate('Details')
     return (
         <View style={styles.cardContainer}>
-            <Image style={styles.cardImage} source={{ uri: food.imageUrl }} />
+            <Image style={styles.cardImage} source={{ uri: food.image_url }} />
             <Text style={styles.name}>{food.name}</Text>
             <Text style={styles.price}>${food.price}</Text>
             <View style={styles.detailsContainer}>

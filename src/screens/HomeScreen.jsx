@@ -10,13 +10,7 @@ import {
     FlatList,
     ScrollView
 } from "react-native";
-
-const specialFood = [
-    { name: 'Noodles', price: 7.2, imageUrl: 'https://www.pngall.com/wp-content/uploads/5/Chinese-Noodles-PNG-High-Quality-Image.png' },
-    { name: 'Pasta', price: 6.2, imageUrl: 'https://static.vecteezy.com/system/resources/previews/045/654/340/non_2x/spaghetti-on-transparent-background-free-png.png' },
-    { name: 'Burger', price: 6.5, imageUrl: 'https://img.pikbest.com/png-images/20241005/burger-png-image_10927034.png!sw800' },
-    { name: 'Pork', price: 10.50, imageUrl: 'https://kitchenmallth.com/wp-content/uploads/2020/11/steak2.png' }
-]
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const recommendedFood = [
     { imageUrl: 'https://www.tasteofhome.com/wp-content/uploads/2025/07/30-Summer-Desserts-That-Are-No-Bake-and-Oh-So-Easy_TOHcom23_27515_P2_MD_03_22_6b.jpg' },
@@ -29,9 +23,13 @@ const recommendedFood = [
 
 import SpecialFoodCard from "../components/SpecialFoodCard";
 import RecommendFoodCard from "../components/RecommendFoodCard";
-import { SafeAreaView } from "react-native-safe-area-context";
+
+import { useFetchCategory } from "../hooks/useProducts";
 
 export default function HomeScreen() {
+    const { products: specials } = useFetchCategory("Specials");
+    const { products: recommended } = useFetchCategory("Recommended");
+    console.log("Render Specials", specials.length);
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -48,7 +46,7 @@ export default function HomeScreen() {
                         <Text style={[styles.primaryText, { fontSize: 20, marginBottom: 30 }]}>Specials</Text>
                         <View style={styles.specialFoods}>
                             <FlatList
-                                data={specialFood}
+                                data={specials}
                                 keyExtractor={item => item.name}
                                 horizontal
                                 showsHorizontalScrollIndicator={false}
@@ -57,10 +55,10 @@ export default function HomeScreen() {
                         </View>
                     </View>
                     <View style={styles.recommendedContainer}>
-                        <Text style={[styles.primaryText, { fontSize: 20,marginBottom: 15 }]}>Recommended</Text>
+                        <Text style={[styles.primaryText, { fontSize: 20, marginBottom: 15 }]}>Recommended</Text>
                         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                             <View style={styles.recommendedFood}>
-                                {recommendedFood.map(food => <RecommendFoodCard key={food.imageUrl} food={food} />)}
+                                {recommended.map(food => <RecommendFoodCard key={food.id} food={food} />)}
                             </View>
                         </ScrollView>
                     </View>
