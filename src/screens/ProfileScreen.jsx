@@ -3,6 +3,7 @@ import {
     Animated,
     Image,
     Keyboard,
+    ScrollView,
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -65,46 +66,48 @@ export default function ProfileScreen() {
                         </TouchableOpacity>
                     </View>
 
-                    <View style={styles.content}>
-                        <View style={styles.signOptions}>
-                            <AnimatedTouchableOpacity
-                                style={[
-                                    styles.signOptionButton,
-                                    { backgroundColor: signUpBg },
-                                ]}
-                                onPress={() => selectOption('signup')}
-                            >
-                                <Text style={[styles.signButtonText, { color: selected === 'signup' ? '#fff' : '#373535' }]}>
-                                    Sign Up
-                                </Text>
-                            </AnimatedTouchableOpacity>
+                    <ScrollView>
+                        <View style={styles.content}>
+                            <View style={styles.signOptions}>
+                                <AnimatedTouchableOpacity
+                                    style={[
+                                        styles.signOptionButton,
+                                        { backgroundColor: signUpBg },
+                                    ]}
+                                    onPress={() => selectOption('signup')}
+                                >
+                                    <Text style={[styles.signButtonText, { color: selected === 'signup' ? '#fff' : '#373535' }]}>
+                                        Sign Up
+                                    </Text>
+                                </AnimatedTouchableOpacity>
 
-                            <AnimatedTouchableOpacity
-                                style={[
-                                    styles.signOptionButton,
-                                    { backgroundColor: signInBg },
-                                ]}
-                                onPress={() => selectOption('signin')}
-                            >
-                                <Text style={[styles.signButtonText, { color: selected === 'signin' ? '#fff' : '#373535' }]}>
-                                    Sign In
-                                </Text>
-                            </AnimatedTouchableOpacity>
-                        </View>
+                                <AnimatedTouchableOpacity
+                                    style={[
+                                        styles.signOptionButton,
+                                        { backgroundColor: signInBg },
+                                    ]}
+                                    onPress={() => selectOption('signin')}
+                                >
+                                    <Text style={[styles.signButtonText, { color: selected === 'signin' ? '#fff' : '#373535' }]}>
+                                        Sign In
+                                    </Text>
+                                </AnimatedTouchableOpacity>
+                            </View>
 
-                        <View style={styles.userDataSection}>
-                            {selected === 'signup'
-                                ? <SignUp />
-                                : <SignIn />
-                            }
-                        </View>
+                            <View style={styles.userDataSection}>
+                                {selected === 'signup'
+                                    ? <SignUp />
+                                    : <SignIn />
+                                }
+                            </View>
 
-                        <View style={styles.buttonSection}>
-                            <TouchableOpacity style={styles.signButton}>
-                                {selected === 'signin' ? <Text style={styles.signButtonText}>Log In</Text> : <Text style={styles.signButtonText}>Create Account</Text>}
-                            </TouchableOpacity>
+                            <View style={styles.buttonSection}>
+                                <TouchableOpacity style={styles.signButton}>
+                                    {selected === 'signin' ? <Text style={styles.signButtonText}>Log In</Text> : <Text style={styles.signButtonText}>Create Account</Text>}
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                    </View>
+                    </ScrollView>
                 </View>
             </TouchableWithoutFeedback>
         </SafeAreaView>

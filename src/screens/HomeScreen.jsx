@@ -1,4 +1,4 @@
-import { Search, Menu } from "lucide-react-native";
+import { Search } from "lucide-react-native";
 
 import {
     StyleSheet,
@@ -7,10 +7,9 @@ import {
     TouchableWithoutFeedback,
     View,
     Keyboard,
-    TouchableOpacity,
-    FlatList
+    FlatList,
+    ScrollView
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 const specialFood = [
     { name: 'Noodles', price: 7.2, imageUrl: 'https://www.pngall.com/wp-content/uploads/5/Chinese-Noodles-PNG-High-Quality-Image.png' },
@@ -25,8 +24,7 @@ const recommendedFood = [
     { imageUrl: 'https://thedeliciousspoon.com/wp-content/uploads/2019/04/Burger-pic-pin-1.jpg' },
     { imageUrl: 'https://www.tasteofhome.com/wp-content/uploads/2025/01/That-Good-Salad_EXPS_FT24_6498_JR_1212_1.jpg' },
     { imageUrl: 'https://images.unsplash.com/photo-1678684279246-96e6afb970f2?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29va2VkJTIwbWVhdHxlbnwwfHwwfHx8MA%3D%3D' },
-    { imageUrl: 'https://nutritionsource.hsph.harvard.edu/wp-content/uploads/2024/11/AdobeStock_71037928.jpeg' }
-
+    { imageUrl: 'https://nutritionsource.hsph.harvard.edu/wp-content/uploads/2024/11/AdobeStock_71037928.jpeg' },
 ]
 
 import SpecialFoodCard from "../components/SpecialFoodCard";
@@ -34,7 +32,6 @@ import RecommendFoodCard from "../components/RecommendFoodCard";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
-    const navigation = useNavigation();
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -60,10 +57,12 @@ export default function HomeScreen() {
                         </View>
                     </View>
                     <View style={styles.recommendedContainer}>
-                        <Text style={[styles.primaryText, { fontSize: 20 }]}>Recommended</Text>
-                        <View style={styles.recommendedFood}>
-                            {recommendedFood.map(food => <RecommendFoodCard key={food.imageUrl} food={food} />)}
-                        </View>
+                        <Text style={[styles.primaryText, { fontSize: 20,marginBottom: 15 }]}>Recommended</Text>
+                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                            <View style={styles.recommendedFood}>
+                                {recommendedFood.map(food => <RecommendFoodCard key={food.imageUrl} food={food} />)}
+                            </View>
+                        </ScrollView>
                     </View>
                 </View>
             </TouchableWithoutFeedback>

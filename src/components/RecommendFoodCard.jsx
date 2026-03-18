@@ -10,8 +10,8 @@ export default function RecommendFoodCard({food}){
 
 const styles = StyleSheet.create({
     foodContainer: {
-        height: 100,
-        width: 100
+        height: 130,
+        width: 130
     },
     image: {
         width: '100%',
