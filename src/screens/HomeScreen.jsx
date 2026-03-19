@@ -29,7 +29,7 @@ import { useFetchCategory } from "../hooks/useProducts";
 export default function HomeScreen() {
     const { products: specials } = useFetchCategory("Specials");
     const { products: recommended } = useFetchCategory("Recommended");
-    console.log("Render Specials", specials.length);
+    
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

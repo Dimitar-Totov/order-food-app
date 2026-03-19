@@ -18,15 +18,7 @@ export default function HomeNavigator() {
             <Stack.Screen
                 name="Details"
                 component={FoodDetails}
-                options={({ navigation }) => ({
-                    headerTitle: () => null,
-                    headerTransparent: true,
-                    headerLeft: () => (
-                        <TouchableOpacity onPress={() => navigation.goBack()}>
-                            <ChevronLeft size={40} strokeWidth={3} color={'#fff'} />
-                        </TouchableOpacity>
-                    ),
-                })}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     );

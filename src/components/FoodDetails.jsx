@@ -1,9 +1,11 @@
 import { Plus, Star } from "lucide-react-native";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import SwipeHintArrow from "./SwipeHintArrow";
 
 export default function FoodDetails() {
     return (
         <View style={styles.cardContainer}>
+            <SwipeHintArrow />
             <View style={styles.content}>
                 <View style={styles.header}>
                     <Image style={styles.foodImage} source={{ uri: 'https://nutritionsource.hsph.harvard.edu/wp-content/uploads/2024/11/AdobeStock_71037928.jpeg' }} />
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         paddingBottom: 100
     },
-    addToCartSection:{
+    addToCartSection: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#419F7D',
