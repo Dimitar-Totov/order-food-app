@@ -12,7 +12,7 @@ import {
 export default function SpecialFoodCard({ food }) {
     const navigation = useNavigation();
 
-    const navigatePressHandler = () => navigation.navigate('Details')
+    const navigatePressHandler = () => navigation.navigate('Details', { foodId: food.id })
     return (
         <View style={styles.cardContainer}>
             <Image style={styles.cardImage} source={{ uri: food.image_url }} />

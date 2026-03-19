@@ -1,19 +1,37 @@
 import { Plus, Star } from "lucide-react-native";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import SwipeHintArrow from "./SwipeHintArrow";
+import { useEffect, useState } from "react";
+import { productService } from "../services";
 
-export default function FoodDetails() {
+export default function FoodDetails({ route }) {
+    const { foodId } = route.params;
+    const [food, setFood] = useState({});
+    const [fetchError, setFetchError] = useState(null);
+
+    useEffect(() => {
+        async function loadData() {
+            try {
+                const result = await productService.getProductById(foodId);
+                setFood(result)
+            } catch (error) {
+                setFetchError(error.message)
+            }
+        }
+        loadData()
+    }, [foodId])
+    
     return (
         <View style={styles.cardContainer}>
             <SwipeHintArrow />
             <View style={styles.content}>
                 <View style={styles.header}>
-                    <Image style={styles.foodImage} source={{ uri: 'https://nutritionsource.hsph.harvard.edu/wp-content/uploads/2024/11/AdobeStock_71037928.jpeg' }} />
+                    <Image style={styles.foodImage} source={{ uri: food.image_url }} />
                 </View>
                 <View style={styles.main}>
-                    <Text style={styles.foodDescription}>Rice Noodles with shrimps, egg, pork, choy, cabbage. Noodles fave or trying something completely new, we want your tastebuds to be your happy buds.</Text>
+                    <Text style={styles.foodDescription}>{food.description}</Text>
                     <View style={styles.foodDetails}>
-                        <Text style={styles.foodName}>Noodles</Text>
+                        <Text style={styles.foodName}>{food.name}</Text>
                         <View style={styles.kcalInfo}>
                             <Text style={{ fontWeight: 500, fontSize: 15 }}>300g/530 kcal</Text>
                             <Text style={{ fontSize: 15 }}>1 portion</Text>
@@ -30,7 +48,7 @@ export default function FoodDetails() {
                     <View style={styles.orderSection}>
                         <View style={styles.priceInfo}>
                             <Text style={{ fontSize: 15, fontWeight: 500 }}>Price:</Text>
-                            <Text style={{ fontSize: 17, fontWeight: 700 }}>$7,50</Text>
+                            <Text style={{ fontSize: 17, fontWeight: 700 }}>${food.price?.toFixed(2)}</Text>
                         </View>
                         <TouchableOpacity style={styles.addToCartSection}>
                             <Text style={styles.addToCartButton}>Add to cart</Text>

@@ -39,10 +39,10 @@ export default function SwipeHintArrow() {
 
     return (
         <View style={styles.container}>
+            <Text style={{fontStyle: 'italic',fontWeight: 500, color: '#434242'}}>Swipe to go back</Text>
             <Animated.View style={{ transform: [{ translateX: slide }], opacity }}>
                 <ChevronRight size={35} color="#000" />
             </Animated.View>
-            <Text style={{fontStyle: 'italic',fontWeight: 500, color: '#434242'}}>Swipe to go back</Text>
         </View>
     );
 }

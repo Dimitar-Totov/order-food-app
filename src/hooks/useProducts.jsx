@@ -24,3 +24,4 @@ export function useFetchCategory(category) {
 
     return { products, loading, error };
 }
+

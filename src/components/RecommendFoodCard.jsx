@@ -1,9 +1,14 @@
+import { useNavigation } from "@react-navigation/native";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
-export default function RecommendFoodCard({food}){
+export default function RecommendFoodCard({ food }) {
+
+    const navigation = useNavigation();
+    const navigatePressHandler = () => navigation.navigate('Details', { foodId: food.id })
+
     return (
-        <TouchableOpacity style={styles.foodContainer}>
-            <Image style={styles.image} source={{uri: food.image_url}} />
+        <TouchableOpacity onPress={navigatePressHandler} style={styles.foodContainer}>
+            <Image style={styles.image} source={{ uri: food.image_url }} />
         </TouchableOpacity>
     )
 }
